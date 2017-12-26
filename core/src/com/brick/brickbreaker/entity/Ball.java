@@ -1,6 +1,7 @@
-package com.brick.brickbreaker.Entity;
+package com.brick.brickbreaker.entity;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+import com.brick.brickbreaker.constants.Constants;
 
 /**
  * Created by bikash on 12/26/17.
@@ -8,38 +9,45 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Ball extends Circle {
     float xSpeed,ySpeed;
+    int state;
 //    float direction;
 
     public Ball() {
     }
 
-    public Ball(float xSpeed, float ySpeed) {
+    public Ball(float xSpeed, float ySpeed, int state) {
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.state = state;
     }
 
-    public Ball(float x, float y, float radius, float xSpeed, float ySpeed) {
+
+    public Ball(float x, float y, float radius, float xSpeed, float ySpeed, int state) {
         super(x, y, radius);
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.state = state;
     }
 
-    public Ball(Vector2 position, float radius, float xSpeed, float ySpeed) {
+    public Ball(Vector2 position, float radius, float xSpeed, float ySpeed, int state) {
         super(position, radius);
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.state = state;
     }
 
-    public Ball(Circle circle, float xSpeed, float ySpeed) {
+    public Ball(Circle circle, float xSpeed, float ySpeed, int state) {
         super(circle);
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.state = state;
     }
 
-    public Ball(Vector2 center, Vector2 edge, float xSpeed, float ySpeed) {
+    public Ball(Vector2 center, Vector2 edge, float xSpeed, float ySpeed, int state) {
         super(center, edge);
         this.xSpeed = xSpeed;
         this.ySpeed = ySpeed;
+        this.state = state;
     }
 
     public float getxSpeed() {
@@ -58,8 +66,18 @@ public class Ball extends Circle {
         this.ySpeed = ySpeed;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public void move(){
-        x+=xSpeed;
-        y+=ySpeed;
+        if(state != Constants.BALL_STATUS_PAUSED){
+            x+=xSpeed;
+            y+=ySpeed;
+        }
     }
 }
